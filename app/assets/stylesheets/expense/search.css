@@ -1,0 +1,181 @@
+html{
+  background-color: #FFF9EE;
+}
+
+.header{
+  position: relative;
+  height: 15vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.by_day{
+  font-size: 30px;
+  text-align: center;
+  align-items: center;
+  font-weight: bold;
+}
+.sum_value{
+  text-align: center;
+  font-weight: bold;
+}
+
+.logo-image{
+  width: 70px;
+  position: absolute;
+  left: 20px;
+  top:12px;
+  transition: transform 0.5s ease 0s;
+}
+.logo-image:hover{
+  transform:rotate(360deg);
+}
+
+.back_image{
+  display: block;
+  flex-direction: column;
+}
+
+.back_text{
+  position: absolute;
+  left: 0px;
+  top:80px;
+}
+.search-input{
+  position: absolute;
+  right: 20px;
+  top:15px;
+}
+.search-btn{
+  position: absolute;
+  right: 20px;
+  top: 45px;
+}
+
+
+.contents{
+  height: 85vh;
+  display: flex;
+
+}
+
+.left_content{
+  height: 85vh;
+  width: 20vw;
+  background-color: #FFF9EE;
+}
+
+.name_price{
+  background-color: skyblue;
+  border-radius: 3em .7em 2em .7em/.7em 2em .7em 3em;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 10px 10px 10px 10px;
+}
+
+.expense {
+  display: flex;
+  justify-content: space-between;
+  font-size: 3vh;
+}
+
+.day{
+  text-align-last: center;
+  font-size:3vh;
+  font-weight: 900;
+}
+
+
+
+.price .sum{
+  margin-left: 20px;
+}
+
+.sum{
+  display: flex;
+  text-align: center;
+  font-size: 4vh;
+  justify-content: space-between;
+}
+
+
+.delBtn{
+  display: none;
+
+}
+
+.right_content{
+  height: 85vh;
+  display: flex;
+  width: 80vw;
+}
+
+.total_price{
+  font-size:40px;
+  font-weight: bold;
+  color: red;
+}
+
+.texts{
+  background-color: #FFF9EE;
+}
+
+.judgment1 {
+  font-size:45px;
+}
+.judgment2 {
+  font-size:45px;
+}
+
+#judgment_3{
+  font-size:45px;
+  color: red;
+  font-weight: bold;
+}
+
+.advice{
+  font-size:45px;
+}
+#advice1 {
+  font-weight: bolder;
+  color: red;
+  
+}
+
+.image{
+  background-color: #FFF9EE;
+}
+
+.character-image1, .character-image2, .character-image3{
+  display: none;
+}
+
+a{
+  text-decoration: none;
+  margin-right: 50px;
+}
+
+.bottom-content{
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.btn{
+  border-radius: 0.5em;
+  background-color: #eaf6fd;
+  padding: 30px;
+  font-size: 30px;
+  color: #3b82c4;
+  box-shadow: 10px 15px #3b82c4;
+}
+
+.btn:active{
+  box-shadow: none;
+  position: relative;
+  top:10px;
+  left:10px;
+}
+

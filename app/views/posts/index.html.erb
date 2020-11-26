@@ -1,0 +1,110 @@
+<%= stylesheet_link_tag "post/index", :media => "all" %>
+<% if user_signed_in? %>
+<input type="hidden" id = "user_id" value= <%=current_user.id%> >
+<% end %>
+<header>
+  <div class = "header-logo">
+     <%= link_to image_tag("yen.png",class: "logo-image"), "/" %>
+  </div>
+  <div class = "heading">
+    <h2 class = "title">カンタン食費節約家計簿🐷</h2>
+  </div>
+  <div class = "navbar">
+    <ul class = "nav-lists">
+      <a class ="nav-list" href="#app-info">アプリについて</a>
+      <a class ="nav-list" href="/posts/profile">プロフィール</a>
+      <a class ="nav-list" href="#intro-video">使い方</a>
+      <a class ="nav-list" href="#post_all">節約術投稿一覧</a>
+      <% if user_signed_in? %>
+       <li><%= link_to "ログアウト", destroy_user_session_path ,method: :delete, class: "btn" %></li>
+       <li><%= link_to "マイページ",  "/expenses/#{current_user.id}" ,class: "btn", id: "myPage"%></li>
+      <% else%>
+       <li><%= link_to 'ゲストログイン', posts_guest_sign_in_path, method: :post,class: "btn" %></li>
+       <li><%= link_to "ログイン", new_user_session_path ,class: "btn" %></li>
+       <li><%= link_to "新規登録", new_user_registration_path ,class: "btn" %></li>
+      <% end%>
+    </ul>
+  </div>
+</header>
+<div class = "contents">
+  <div class = "first-view">
+    <div class="left-content">
+      <h1 class= "main-letter">誰でも簡単に食費を節約できる</h1>
+    </div>
+    <div class="right-conten">
+      <% if user_signed_in? %>
+      <div class = "character-image">
+      <div><%= image_tag "pekopigu1.png" ,class: "character-image1" %></div>
+      <div class = "user_name"><%=current_user.nickname%>さん<br>こんにちは！<br></div>
+      </div>
+      <% else %>
+      <div><%= image_tag "pekopigu2.png" ,class: "character-image" %></div>
+      <% end %>
+    </div>
+  </div>
+  <div class = "intro-video" id = "intro-video">
+    <div class = "intro-logo">使い方</div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/dRh48-GLd_I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  <div class = "posts-list">
+    <div class = "posts-logo" id = "post_all">節約術投稿一覧</div>
+      <% if user_signed_in? %>
+        <%=image_tag "toukou.png", name:"toukou" ,class: "toukou-image",  id: "btn" %>
+      <% end %>
+      <div id="list">
+      </div>
+    <div class = "post-all">
+    
+      <% @posts.each do |post| %>
+        <%= render partial: "post", locals: { post: post } %>
+      <% end %>
+    </div>
+      <div class ="paginate">
+        <%= will_paginate @posts, previous_label: '&#8592; &nbsp;前', next_label: '次 &#8594;', inner_window: 3, outer_window: 0 %>
+       <div class ="paginate_current">
+          <%= @posts.current_page %> of <%= @posts.total_pages %>
+        </div>
+      </div>
+  </div>
+   <div class = "app-info" id = "app-info">
+    <div class = "app-logo">アプリについて</div>
+    <div class = "app-contents">
+      <div class = "left-app"><%= image_tag "aicon.png" , class: "aicon-image" %></div>
+      <div class = "right-app">
+        <div class= "overview">食費は、20~30代女性の1ヶ月平均出費額の割合で家賃に続き大部分を占めています。<br>貯金を目的として家計簿をつけた経験はあるものの、実際に貯金までできなかった。<br>どの食費を節約できたかイマイチ分からなかった。<br>そんな結果で終わった人は多いと思います。<span class="font-size">(家計簿が続かなかった割合は、利用者の約6割と言われています)</span><br>
+        このアプリでは、直感的に家計簿を簡単に付けることができます。<br>更に、食費に特化した家計簿なので1日の予算が達成出来なかった日は、どの食費を我慢したら予算達成出来たか教えてくれる機能もあります。そして、従来の家計簿アプリには無かったSNS機能もあるので楽しく節約ができ、毎日使いたくなる家計簿アプリです！
+</div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal" id = "modal">
+    <div class="modal__bg"></div>
+      <div class="modal__content">
+      <%= stylesheet_link_tag "post/modal_new", :media => "all" %>
+      <div class = "close-logo">
+        <%= image_tag "close.png" ,class: "close-image", id: "close_image" %>
+      </div>
+      <%= form_with model: @post,class: 'post-main', local: true, id:"form" do |f| %>
+        <div class = "form-contents">  
+          <div class = "form">
+            <label class="form-text">私の節約術</label>
+            <span class="indispensable">🐖</span> 
+            <%= f.text_field :text, class:"input-default", placeholder:"60文字以内であなたの節約術をシェアしよう！", autofocus: true, id: "text", maxlength:"60" %>
+          </div>
+          <span id="counts">0/60</span>
+        <div class="form">
+        <div class="submit">
+           <%= f.submit "シェア" ,class: "submit-btn", id: "submit-btn" %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<footer>
+  <p class = "footer">Copyright 2020 shokuhi-setsuyaku All right reserved</p>
+</footer>

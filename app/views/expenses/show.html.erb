@@ -1,0 +1,58 @@
+<%= stylesheet_link_tag "expense/index", :media => "all" %>
+<input type="hidden" id = "user_id" value= <%="/expenses/#{current_user.id}"%> >
+<%= link_to image_tag("yen.png",class: "logo-image"), "/"%>
+<div class = "header">
+  <div class = "nickname"><%= @nickname %>さんの月次目標食費額</div>
+  <div class = "target_amount"><%= @target_amount.to_s(:delimited) %>円</div>
+   <div class = edit-content>
+    <div><%= link_to '目標予算を編集',  edit_user_registration_path(current_user.id), method: :get,class: 'btn', id: "btn" %></div>
+  </div>
+  <div class= "search_form">
+    <%= form_with(url:  search_month_expenses_path, local: true, method: :get, class: "s") do |form| %>
+    <%= form.month_field :key, class: "search-input" %>
+    <%= form.submit "残高表示", class: "search-btn" %>
+  <% end %>
+  <%= form_with(url: search_expenses_path, local: true, method: :get, class: "search-form") do |form| %>
+    <%= form.date_field :keyword, class: "search-input" %>
+    <%= form.submit "日別表示", class: "search-btn" %>
+  <% end %>
+</div>
+</div>
+<div class = "contents">
+  <div class = "left-content">
+    <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+    <h2>カンタン家計簿</h2>
+      <li>★一度に登録できるのは10品まで</li>
+      <li>★日にちを選んで下さい！</li>
+    <%= form_with(model: @expense,id: "form" ,local: true) do |f|%>
+    <%= f.date_field :day, class: 'recode-date' %>
+       <div id = "form-group" name= "form">
+        <div id = "group">
+          <%= f.collection_select(:category_id_1, Category.all, :id, :name, {}, {class:"select-box"}) %>
+          <%= f.text_field :name_1, class:"name-default", id:"name_1", placeholder:"詳細1"%>
+          <%= f.number_field :price_1, class:"price-default",  id:"price_1", placeholder:"値段1", setp:"1"%>
+         </div>
+        </div>
+        <input type="button" value="追加" id="add" >
+        <input type="button" value="削除" id="delete" >
+        <%= f.submit "登録" , id: "submit-btn",data: {confirm: "登録しますか？"},name:"submit" %>
+    <% end %>
+  </div>
+  <div id="list">
+  </div>
+  <div class = "right-content">
+    <div class = "content1">
+      <% @sum = 0 %>
+      <% @expenses.each do |expense| %>
+      <%= render partial: "expense", locals: { expense: expense } %>
+    <% end %>
+    </div>
+  </div>
+</div>
+<footer>
+  <p class = "footer">Copyright 2020 shokuhi-setsuyaku All right reserved</p>
+</footer>

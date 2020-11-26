@@ -1,0 +1,45 @@
+.close-image{
+  width: 25px;
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  cursor: pointer;
+  cursor: hand;
+}
+
+
+.form-contents{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+}
+
+
+.form{
+  padding-top: 20px;
+}
+
+.input-default{
+  display: block;
+  height: 100px;
+  width: 320px;
+}
+
+.form-text{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+::placeholder {
+  font-weight: bold;
+  color: lightpink;
+}
+
+
+.submit-btn{
+  padding:10px 50px;
+  background-color:   #ffffcc;
+  border-radius: 2.0em;
+}

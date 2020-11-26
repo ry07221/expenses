@@ -1,0 +1,67 @@
+html{
+  background-color: #FFF9EE;
+}
+
+
+.top-logo{
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 25vh;
+}
+
+.logo-image{
+  width: 70px;
+}
+
+.form-contents{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ 
+  height: 70vh;
+}
+
+
+
+.form{
+  padding-top: 30px;
+}
+
+.input-default{
+  display: block;
+  height: 40px;
+  width: 280px;
+}
+
+.form-text{
+  font-size: 16px;
+}
+
+.indispensable{
+  border-radius: 0.3em;
+  font-size: 13px;
+  background-color: red;
+  color: white;
+}
+
+.comment{
+  font-size: 5px;
+  color: red;
+}
+
+.submit-btn{
+  padding:10px 50px;
+}
+
+.error-alert {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5vh;
+}
+
+.error-message {
+  font-size: 1.3vw;
+  list-style: circle;
+  color: rgb(182, 48, 0);
+}
